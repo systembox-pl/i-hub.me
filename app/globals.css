@@ -164,10 +164,12 @@
 }
 
 .modern-card:hover {
+  /* Enhanced hover effect with subtle highlighting and glow */
   background: rgba(255, 255, 255, 1);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  transform: translateY(-1px);
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(59, 130, 246, 0.05),
+    0 0 20px rgba(59, 130, 246, 0.08);
+  transform: translateY(-2px);
 }
 
 /* Clean 2025 button styles */
