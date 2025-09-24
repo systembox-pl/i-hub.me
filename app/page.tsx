@@ -23,8 +23,8 @@ export default function Home() {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
             {/* Card 1 - Lead Generation */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-              <div className="space-y-6">
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full">
+              <div className="flex flex-col justify-between h-full space-y-6">
                 <div className="space-y-4">
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900">Generowanie leadów w modelu CPA</h3>
                   <p className="text-lg text-gray-600 leading-relaxed font-extralight">
@@ -44,8 +44,8 @@ export default function Home() {
             </div>
 
             {/* Card 2 - AI & Automation */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-              <div className="space-y-6">
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full">
+              <div className="flex flex-col justify-between h-full space-y-6">
                 <div className="space-y-4">
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900">Automatyzacje i AI</h3>
                   <p className="text-lg text-gray-600 leading-relaxed font-extralight">
@@ -66,8 +66,8 @@ export default function Home() {
             </div>
 
             {/* Card 3 - Web Development */}
-            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
-              <div className="space-y-6">
+            <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 flex flex-col h-full">
+              <div className="flex flex-col justify-between h-full space-y-6">
                 <div className="space-y-4">
                   <h3 className="text-2xl md:text-3xl font-bold text-gray-900">Tworzenie stron WWW</h3>
                   <p className="text-lg text-gray-600 leading-relaxed font-extralight">
