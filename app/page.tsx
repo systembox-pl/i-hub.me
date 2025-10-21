@@ -24,7 +24,7 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
             {/* Card 1 - Lead Generation */}
             <a href="https://lead.i-hub.me/" target="_blank" rel="noopener noreferrer" className="block">
               <div className="modern-card rounded-2xl p-6 flex flex-col h-full group cursor-pointer animate-subtle-float">
@@ -93,6 +93,31 @@ export default function Home() {
                 <Button
                   size="lg"
                   className="modern-button-pink w-full px-8 py-3 text-base font-medium text-white rounded-xl border-0 pointer-events-none"
+                >
+                  Dowiedz się więcej
+                </Button>
+              </div>
+            </a>
+
+            <a href="https://vira.i-hub.me/" target="_blank" rel="noopener noreferrer" className="block">
+              <div
+                className="modern-card rounded-2xl p-6 flex flex-col h-full group cursor-pointer animate-subtle-float"
+                style={{ animationDelay: "0.3s" }}
+              >
+                <div className="h-20 flex items-center justify-center mb-4">
+                  <h3 className="text-lg md:text-xl font-semibold text-foreground text-center leading-tight">
+                    VIRA Voice Assistant by iHub
+                  </h3>
+                </div>
+                <div className="h-28 flex items-center justify-center mb-6 flex-grow">
+                  <p className="text-sm text-muted-foreground leading-relaxed text-center">
+                    Inteligentny asystent głosowy AI, który automatyzuje rozmowy z Twoimi klientami. Windykacja,
+                    umawianie wizyt, sprzedaż – jeden voicebot, wiele zastosowań.
+                  </p>
+                </div>
+                <Button
+                  size="lg"
+                  className="modern-button-green w-full px-8 py-3 text-base font-medium text-white rounded-xl border-0 pointer-events-none"
                 >
                   Dowiedz się więcej
                 </Button>
