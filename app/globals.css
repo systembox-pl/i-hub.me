@@ -76,8 +76,8 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -223,5 +223,19 @@
 .modern-button-green:hover {
   background: linear-gradient(135deg, #059669 0%, #047857 100%);
   box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+  transform: translateY(-0.5px);
+}
+
+/* Adding new orange button style for Vedro AI card */
+.modern-button-orange {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+  box-shadow: 0 1px 2px rgba(249, 115, 22, 0.1);
+  transition: all 0.2s ease;
+}
+
+.modern-button-orange:hover {
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
+  box-shadow: 0 2px 4px rgba(249, 115, 22, 0.2);
   transform: translateY(-0.5px);
 }
