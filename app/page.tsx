@@ -1,16 +1,73 @@
-import { Button } from "@/components/ui/button"
+"use client"
+
+import { AnimatedBackground } from "@/components/animated-background"
+
+const services = [
+  {
+    id: 1,
+    title: "Generowanie leadów",
+    tagline: "Płacisz za efekt",
+    description: "Dostarczamy zweryfikowane kontakty biznesowe w modelu success fee – płacisz tylko za efekt.",
+    url: "https://lead.i-hub.me/",
+    image: "/images/lead-bg.jpg",
+    gradient: "from-blue-900/80 via-blue-800/70 to-blue-900/90",
+  },
+  {
+    id: 2,
+    title: "Automatyzacje i AI",
+    tagline: "Oszczędność czasu",
+    description: "Wdrażamy inteligentne rozwiązania, które oszczędzają Twój czas i zwiększają sprzedaż.",
+    url: "https://ai.i-hub.me/",
+    image: "/images/ai-bg.jpg",
+    gradient: "from-purple-900/80 via-purple-800/70 to-purple-900/90",
+  },
+  {
+    id: 3,
+    title: "Strony WWW",
+    tagline: "Gotowe w 3 dni",
+    description: "Nowoczesne strony internetowe gotowe w 3 dni. Bez czekania – tylko skuteczne rozwiązania.",
+    url: "https://webstudio.i-hub.me/",
+    image: "/images/web-bg.jpg",
+    gradient: "from-pink-900/80 via-pink-800/70 to-pink-900/90",
+  },
+  {
+    id: 4,
+    title: "VIRA Voice",
+    tagline: "Asystent głosowy",
+    description: "Inteligentny asystent głosowy AI automatyzujący rozmowy z klientami.",
+    url: "https://vira.i-hub.me/",
+    image: "/images/voice-bg.jpg",
+    gradient: "from-emerald-900/80 via-emerald-800/70 to-emerald-900/90",
+  },
+  {
+    id: 5,
+    title: "Vedro AI",
+    tagline: "Chatbot 24/7",
+    description: "Chatbot AI zamieniający odwiedzających w wykwalifikowanych leadów 24/7.",
+    url: "https://www.vedroai.com/",
+    image: "/images/chat-bg.jpg",
+    gradient: "from-orange-900/80 via-orange-800/70 to-orange-900/90",
+  },
+]
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background flex flex-col">
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background to-secondary/30" />
-
-      <main className="flex-1 flex items-center justify-center px-6 py-8 relative z-10">
-        <div className="max-w-7xl mx-auto text-center space-y-12">
-          <div className="space-y-6">
-            <div className="text-xl md:text-2xl font-medium text-primary">iHub Group</div>
+    <div className="min-h-screen flex flex-col relative overflow-hidden">
+      {/* Animated Background with particles and comet effect */}
+      <AnimatedBackground />
+      
+      <main className="flex-1 flex items-center justify-center px-4 md:px-8 py-8 md:py-12 relative z-10">
+        <div className="w-full max-w-7xl mx-auto text-center space-y-8 md:space-y-10">
+          {/* Header */}
+          <div className="space-y-4 md:space-y-5">
+            <div
+              className="text-lg md:text-xl font-semibold text-slate-500 opacity-0 animate-fade-in-up"
+              style={{ animationDelay: "0s" }}
+            >
+              iHub Group
+            </div>
             <h1
-              className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight text-balance opacity-0 animate-fade-in-up"
+              className="text-2xl md:text-4xl lg:text-5xl font-bold text-slate-800 leading-tight text-balance opacity-0 animate-fade-in-up"
               style={{
                 animationDelay: "0.2s",
                 fontWeight: "700",
@@ -19,142 +76,51 @@ export default function Home() {
             >
               Pozyskujemy klientów i automatyzujemy Twój biznes dzięki AI
             </h1>
-            <p className="text-muted-foreground text-pretty max-w-3xl mx-auto text-base md:text-lg leading-relaxed">
+            <p
+              className="text-slate-500 text-pretty max-w-2xl mx-auto text-sm md:text-base leading-relaxed opacity-0 animate-fade-in-up"
+              style={{ animationDelay: "0.4s" }}
+            >
               Wybierz kierunek, który najbardziej odpowiada Twoim potrzebom
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {/* Card 1 - Lead Generation */}
-            <a href="https://lead.i-hub.me/" target="_blank" rel="noopener noreferrer" className="block">
-              <div className="modern-card rounded-2xl p-6 flex flex-col h-full group cursor-pointer animate-subtle-float">
-                <div className="h-20 flex items-center justify-center mb-4">
-                  <h3 className="text-lg md:text-xl font-semibold text-foreground text-center leading-tight">
-                    Generowanie leadów w modelu CPA
-                  </h3>
-                </div>
-                <div className="h-28 flex items-center justify-center mb-6 flex-grow">
-                  <p className="text-sm text-muted-foreground leading-relaxed text-center">
-                    Dostarczamy zweryfikowane kontakty biznesowe w modelu success fee – płacisz tylko za efekt.
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  className="modern-button-blue w-full px-8 py-3 text-base font-medium text-white rounded-xl border-0 pointer-events-none"
-                >
-                  Dowiedz się więcej
-                </Button>
-              </div>
-            </a>
-
-            {/* Card 2 - AI & Automation */}
-            <a href="https://ai.i-hub.me/" target="_blank" rel="noopener noreferrer" className="block">
-              <div
-                className="modern-card rounded-2xl p-6 flex flex-col h-full group cursor-pointer animate-subtle-float"
-                style={{ animationDelay: "0.1s" }}
+          {/* Skewed Accordion */}
+          <div
+            className="accordion-container mx-auto opacity-0 animate-fade-in-up"
+            style={{ animationDelay: "0.6s" }}
+          >
+            {services.map((service, index) => (
+              <a
+                key={service.id}
+                href={service.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="accordion-panel"
+                style={{ zIndex: services.length - index }}
               >
-                <div className="h-20 flex items-center justify-center mb-4">
-                  <h3 className="text-lg md:text-xl font-semibold text-foreground text-center leading-tight">
-                    Automatyzacje i AI
-                  </h3>
+                {/* Background image */}
+                <div
+                  className="accordion-panel-bg"
+                  style={{ backgroundImage: `url(${service.image})` }}
+                />
+                {/* Gradient overlay */}
+                <div className={`accordion-panel-overlay bg-gradient-to-b ${service.gradient}`} />
+                
+                {/* Content */}
+                <div className="accordion-panel-content">
+                  <h3 className="accordion-panel-title">{service.title}</h3>
+                  <p className="accordion-panel-tagline">{service.tagline}</p>
+                  <p className="accordion-panel-description">{service.description}</p>
+                  <span className="accordion-panel-cta">Dowiedz się więcej</span>
                 </div>
-                <div className="h-28 flex items-center justify-center mb-6 flex-grow">
-                  <p className="text-sm text-muted-foreground leading-relaxed text-center">
-                    Wdrażamy inteligentne rozwiązania, które oszczędzają Twój czas, redukują koszty i zwiększają
-                    sprzedaż.
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  className="modern-button-purple w-full px-8 py-3 text-base font-medium text-white rounded-xl border-0 pointer-events-none"
-                >
-                  Dowiedz się więcej
-                </Button>
-              </div>
-            </a>
-
-            {/* Card 3 - Web Development */}
-            <a href="https://webstudio.i-hub.me/" target="_blank" rel="noopener noreferrer" className="block">
-              <div
-                className="modern-card rounded-2xl p-6 flex flex-col h-full group cursor-pointer animate-subtle-float"
-                style={{ animationDelay: "0.2s" }}
-              >
-                <div className="h-20 flex items-center justify-center mb-4">
-                  <h3 className="text-lg md:text-xl font-semibold text-foreground text-center leading-tight">
-                    Tworzenie stron WWW
-                  </h3>
-                </div>
-                <div className="h-28 flex items-center justify-center mb-6 flex-grow">
-                  <p className="text-sm text-muted-foreground leading-relaxed text-center">
-                    Nowoczesne strony internetowe gotowe w 3 dni. Bez grafika, bez czekania – tylko skuteczne
-                    rozwiązania.
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  className="modern-button-pink w-full px-8 py-3 text-base font-medium text-white rounded-xl border-0 pointer-events-none"
-                >
-                  Dowiedz się więcej
-                </Button>
-              </div>
-            </a>
-
-            {/* Card 4 - VIRA Voice Assistant */}
-            <a href="https://vira.i-hub.me/" target="_blank" rel="noopener noreferrer" className="block">
-              <div
-                className="modern-card rounded-2xl p-6 flex flex-col h-full group cursor-pointer animate-subtle-float"
-                style={{ animationDelay: "0.3s" }}
-              >
-                <div className="h-20 flex items-center justify-center mb-4">
-                  <h3 className="text-lg md:text-xl font-semibold text-foreground text-center leading-tight">
-                    VIRA Voice Assistant by iHub
-                  </h3>
-                </div>
-                <div className="h-28 flex items-center justify-center mb-6 flex-grow">
-                  <p className="text-sm text-muted-foreground leading-relaxed text-center">
-                    Inteligentny asystent głosowy AI, który automatyzuje rozmowy z Twoimi klientami. Windykacja,
-                    umawianie wizyt, sprzedaż – jeden voicebot, wiele zastosowań.
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  className="modern-button-green w-full px-8 py-3 text-base font-medium text-white rounded-xl border-0 pointer-events-none"
-                >
-                  Dowiedz się więcej
-                </Button>
-              </div>
-            </a>
-
-            <a href="https://www.vedroai.com/" target="_blank" rel="noopener noreferrer" className="block">
-              <div
-                className="modern-card rounded-2xl p-6 flex flex-col h-full group cursor-pointer animate-subtle-float"
-                style={{ animationDelay: "0.4s" }}
-              >
-                <div className="h-20 flex items-center justify-center mb-4">
-                  <h3 className="text-lg md:text-xl font-semibold text-foreground text-center leading-tight">
-                    Vedro AI Chatbot
-                  </h3>
-                </div>
-                <div className="h-28 flex items-center justify-center mb-6 flex-grow">
-                  <p className="text-sm text-muted-foreground leading-relaxed text-center">
-                    Chatbot AI, który zamienia odwiedzających w wykwalifikowanych leadów. Odpowiada 24/7, kwalifikuje
-                    prospektów i zbiera dane kontaktowe automatycznie.
-                  </p>
-                </div>
-                <Button
-                  size="lg"
-                  className="modern-button-orange w-full px-8 py-3 text-base font-medium text-white rounded-xl border-0 pointer-events-none"
-                >
-                  Dowiedz się więcej
-                </Button>
-              </div>
-            </a>
+              </a>
+            ))}
           </div>
         </div>
       </main>
 
-      <footer className="py-8 text-center relative z-10">
-        <p className="text-muted-foreground text-sm">© {new Date().getFullYear()} iHub Group</p>
+      <footer className="py-6 text-center relative z-10">
+        <p className="text-slate-400 text-sm">© {new Date().getFullYear()} iHub Group</p>
       </footer>
     </div>
   )
