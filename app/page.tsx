@@ -1,5 +1,8 @@
 "use client"
 
+import React from "react"
+
+import { useState } from "react"
 import { AnimatedBackground } from "@/components/animated-background"
 
 const services = [
@@ -51,6 +54,27 @@ const services = [
 ]
 
 export default function Home() {
+  const [expandedId, setExpandedId] = useState<number | null>(null)
+
+  const handlePanelClick = (e: React.MouseEvent, serviceId: number) => {
+    // Check if on mobile (768px breakpoint)
+    const isMobile = window.innerWidth <= 768
+
+    if (isMobile) {
+      // On mobile: toggle expand/collapse
+      if (expandedId === serviceId) {
+        setExpandedId(null)
+      } else {
+        setExpandedId(serviceId)
+      }
+    }
+  }
+
+  const handleCtaClick = (e: React.MouseEvent, url: string) => {
+    e.stopPropagation()
+    window.open(url, "_blank", "noopener,noreferrer")
+  }
+
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden">
       {/* Animated Background with particles and comet effect */}
@@ -90,14 +114,24 @@ export default function Home() {
             style={{ animationDelay: "0.6s" }}
           >
             {services.map((service, index) => (
-              <a
+              <div
                 key={service.id}
-                href={service.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="accordion-panel"
+                className={`accordion-panel ${expandedId === service.id ? "mobile-expanded" : ""}`}
                 style={{ zIndex: services.length - index }}
+                onClick={(e) => handlePanelClick(e, service.id)}
+                onKeyDown={(e) => e.key === "Enter" && handlePanelClick(e as unknown as React.MouseEvent, service.id)}
+                role="button"
+                tabIndex={0}
               >
+                {/* Desktop link wrapper */}
+                <a
+                  href={service.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="accordion-panel-link hidden md:block absolute inset-0 z-20"
+                  onClick={(e) => e.stopPropagation()}
+                />
+                
                 {/* Background image */}
                 <div
                   className="accordion-panel-bg"
@@ -111,9 +145,15 @@ export default function Home() {
                   <h3 className="accordion-panel-title">{service.title}</h3>
                   <p className="accordion-panel-tagline">{service.tagline}</p>
                   <p className="accordion-panel-description">{service.description}</p>
-                  <span className="accordion-panel-cta">Dowiedz się więcej</span>
+                  <button 
+                    type="button"
+                    className="accordion-panel-cta"
+                    onClick={(e) => handleCtaClick(e, service.url)}
+                  >
+                    Dowiedz się więcej
+                  </button>
                 </div>
-              </a>
+              </div>
             ))}
           </div>
         </div>
