@@ -448,26 +448,17 @@
     transform: translateY(0);
   }
   
-  /* Vertical text for collapsed panels when one is expanded */
-  .accordion-container:has(.mobile-expanded) .accordion-panel:not(.mobile-expanded) .accordion-panel-title,
-  .accordion-container:has(.mobile-expanded) .accordion-panel:not(.mobile-expanded) .accordion-panel-tagline {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
-  }
-  
-  /* Override hover-based vertical text on mobile */
+  /* Override hover-based vertical text on mobile - keep text horizontal */
   .accordion-container:hover .accordion-panel:not(:hover) .accordion-panel-title,
   .accordion-container:hover .accordion-panel:not(:hover) .accordion-panel-tagline {
     writing-mode: horizontal-tb;
     transform: rotate(0);
   }
   
-  /* But keep vertical when there's an expanded panel */
-  .accordion-container:has(.mobile-expanded):hover .accordion-panel:not(.mobile-expanded) .accordion-panel-title,
-  .accordion-container:has(.mobile-expanded):hover .accordion-panel:not(.mobile-expanded) .accordion-panel-tagline {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
-    transform: rotate(180deg);
+  /* Keep text horizontal in collapsed panels on mobile */
+  .accordion-container:has(.mobile-expanded) .accordion-panel:not(.mobile-expanded) .accordion-panel-title,
+  .accordion-container:has(.mobile-expanded) .accordion-panel:not(.mobile-expanded) .accordion-panel-tagline {
+    writing-mode: horizontal-tb;
+    transform: rotate(0);
   }
 }
