@@ -14,7 +14,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "iHub Group | Generowanie leadów B2B i automatyzacje AI",
   description:
-    "iHub Group pomaga firmom B2B zdobywać lepsze leady, automatyzować procesy i wdrażać praktyczne rozwiązania AI. Umów rozmowę o wzroście.",
+    "iHub Group pomaga firmom B2B zdobywać lepsze leady w modelu CPA, automatyzować procesy i wdrażać praktyczne rozwiązania AI. Umów rozmowę o wzroście.",
   keywords: "generowanie leadów B2B, automatyzacja biznesu, systemy AI, iHub Group, sztuczna inteligencja, wzrost biznesu",
   authors: [{ name: "iHub Group" }],
   creator: "iHub Group",
