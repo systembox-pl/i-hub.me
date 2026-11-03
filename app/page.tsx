@@ -54,12 +54,30 @@ export default function Home() {
             <div className="hero-actions"><a className="primary-action" href="#services">Zobacz, co możemy zrobić <ArrowUpRight size={17} /></a><a className="text-action" href="#approach"><Play size={14} fill="currentColor" /> Jak pracujemy</a></div>
             <div className="hero-trust"><span><Check size={14} /> Konkretny plan działania</span><span><Check size={14} /> Wynik widoczny w danych</span></div>
           </div>
-          <div className="hero-visual">
+          <div
+            className="hero-visual"
+            onMouseMove={(event) => {
+              const bounds = event.currentTarget.getBoundingClientRect()
+              const x = ((event.clientX - bounds.left) / bounds.width - 0.5) * 2
+              const y = ((event.clientY - bounds.top) / bounds.height - 0.5) * 2
+              event.currentTarget.style.setProperty("--pointer-x", `${x * 8}px`)
+              event.currentTarget.style.setProperty("--pointer-y", `${y * 8}px`)
+            }}
+            onMouseLeave={(event) => {
+              event.currentTarget.style.setProperty("--pointer-x", "0px")
+              event.currentTarget.style.setProperty("--pointer-y", "0px")
+            }}
+          >
             <img src="/images/lead-bg.jpg" alt="Zespół pracujący nad rozwojem systemu sprzedaży" />
             <div className="hero-visual-shade" />
+            <div className="hero-scan" aria-hidden="true" />
+            <div className="hero-data-line data-line-one" aria-hidden="true" />
+            <div className="hero-data-line data-line-two" aria-hidden="true" />
+            <div className="hero-node node-one" aria-hidden="true" />
+            <div className="hero-node node-two" aria-hidden="true" />
+            <div className="hero-node node-three" aria-hidden="true" />
             <div className="hero-play"><Play size={20} fill="currentColor" /></div>
             <div className="hero-caption"><span>iHub Group</span><strong>Technologia, która<br />pracuje dla biznesu.</strong></div>
-            
           </div>
         </section>
 
