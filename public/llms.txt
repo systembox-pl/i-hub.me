@@ -10,7 +10,7 @@
 - Kontakt: hello@i-hub.me
 
 ## Rozwiązania
-- Generowanie leadów B2B w modelu CPA: pozyskiwanie i kwalifikacja kontaktów dla zespołów sprzedażowych; rozliczenie opiera się na wcześniej uzgodnionej akcji lub zweryfikowanym efekcie.
+- Kampanie CPA nastawione na działanie: prowadzimy właściwe osoby do kontaktu, formularza, rozmowy lub spotkania; mierzymy konkretne kroki zamiast samych wyświetleń i zasięgów.
 - Automatyzacje procesów: usprawnianie powtarzalnych działań w sprzedaży, obsłudze i operacjach.
 - Vedro AI: asystent konwersacyjny odpowiadający klientom i wspierający kwalifikację rozmów 24/7.
 
