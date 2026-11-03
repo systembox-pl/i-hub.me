@@ -1,5 +1,4 @@
 import {
-  ShieldCheck,
   Workflow,
   ShoppingCart,
   ArrowRight,
@@ -22,23 +21,6 @@ const CONTACT_PHONE_HREF = "tel:+48787460539"
 const mailto = (subject: string) => `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}`
 
 const offers = [
-  {
-    id: "ksc",
-    icon: ShieldCheck,
-    badge: "Pilne",
-    title: "KSC / NIS2",
-    lead: "Wpis do Wykazu KSC i przygotowanie firmy do nowych obowiązków.",
-    note: "Termin samorejestracji minął 3 października 2026. Jeśli Twoja firma podlega ustawie, a wniosku nie złożyła, obowiązek nadal jest do wykonania — lepiej teraz niż czekać na wpis z urzędu.",
-    points: [
-      "Sprawdzamy, czy firma jest podmiotem kluczowym lub ważnym",
-      "Przygotowujemy i składamy wniosek w Wykazie KSC (S46)",
-      "Plan dostosowania przed końcem okresu przejściowego (3 kwietnia 2027)",
-    ],
-    price: "od 2 500 zł",
-    priceNote: "netto, projekt w kilka dni roboczych",
-    cta: "Zapytaj o KSC",
-    accent: "from-violet-600 to-indigo-700",
-  },
   {
     id: "automatyzacje",
     icon: Workflow,
@@ -122,13 +104,13 @@ export default function Home() {
             className="inline-block rounded-full border border-indigo-200 bg-white/70 px-4 py-1 text-xs md:text-sm font-medium text-indigo-700 opacity-0 animate-fade-in-up"
             style={{ animationDelay: "0s" }}
           >
-            KSC · KSeF · automatyzacje · e-commerce
+            Automatyzacje · KSeF · e-commerce
           </p>
           <h1
             className="mt-6 text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-balance opacity-0 animate-fade-in-up"
             style={{ animationDelay: "0.15s" }}
           >
-            Załatwiamy obowiązki, automatyzujemy pracę{" "}
+            Automatyzujemy pracę{" "}
             <span className="bg-gradient-to-r from-violet-700 to-blue-700 bg-clip-text text-transparent">
               i sprzedajemy więcej
             </span>
@@ -163,10 +145,10 @@ export default function Home() {
         <section id="oferta" className="max-w-6xl mx-auto px-4 md:px-8 py-12 scroll-mt-20">
           <h2 className="text-2xl md:text-3xl font-bold text-center">W czym jesteśmy najmocniejsi</h2>
           <p className="mt-3 text-center text-slate-600 max-w-2xl mx-auto">
-            Trzy obszary, w których dowozimy najszybciej. Ceny orientacyjne — dokładną wycenę dostajesz po rozmowie.
+            Dwa obszary, w których dowozimy najszybciej. Ceny orientacyjne — dokładną wycenę dostajesz po rozmowie.
           </p>
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
             {offers.map((o) => (
               <article
                 key={o.id}
