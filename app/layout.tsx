@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   title: "iHub Group - Generowanie leadów i automatyzacje AI",
   description:
     "Pozyskujemy klientów i automatyzujemy Twój biznes dzięki AI. Generowanie leadów w modelu CPA i inteligentne rozwiązania automatyzacji.",
-  keywords: "generowanie leadów, automatyzacja AI, CPA, iHub Group, sztuczna inteligencja, biznes",
+  keywords: "generowanie leadów B2B, automatyzacja biznesu, systemy AI, iHub Group, sztuczna inteligencja, wzrost biznesu",
   authors: [{ name: "iHub Group" }],
   creator: "iHub Group",
   publisher: "iHub Group",
@@ -38,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="pl" className={inter.variable}>
       <body className="font-sans antialiased">
         <ClientLayout>{children}</ClientLayout>
       </body>
