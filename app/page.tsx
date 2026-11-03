@@ -9,21 +9,21 @@ const services = [
     title: "Generowanie leadów B2B",
     description: "Docieramy do firm, które realnie potrzebują Twojej oferty. Łączymy dane, kwalifikację i proces sprzedaży, aby płacić za szanse, nie za przypadkowy ruch.",
     url: "https://lead.i-hub.me/",
-    image: "/images/lead-bg.jpg",
+    image: "/images/lead-bg.png",
   },
   {
     number: "02",
     title: "Automatyzacje procesów",
     description: "Porządkujemy powtarzalną pracę w sprzedaży, obsłudze i operacjach. Projektujemy automatyzacje, które działają w Twoich narzędziach i są zrozumiałe dla zespołu.",
     url: "https://ai.i-hub.me/",
-    image: "/images/ai-bg.jpg",
+    image: "/images/ai-bg.png",
   },
   {
     number: "03",
     title: "Vedro AI",
     description: "Asystent konwersacyjny, który odpowiada na pytania klientów, rozpoznaje intencję i przekazuje wartościowe rozmowy do właściwej osoby — przez całą dobę.",
     url: "https://www.vedroai.com/",
-    image: "/images/chat-bg.jpg",
+    image: "/images/chat-bg.png",
   },
 ]
 
@@ -68,7 +68,7 @@ export default function Home() {
               event.currentTarget.style.setProperty("--pointer-y", "0px")
             }}
           >
-            <img src="/images/lead-bg.jpg" alt="Zespół pracujący nad rozwojem systemu sprzedaży" />
+            <img src="/images/lead-bg.png" alt="Zespół pracujący nad rozwojem systemu sprzedaży" />
             <div className="hero-visual-shade" />
             <div className="hero-scan" aria-hidden="true" />
             <div className="hero-data-line data-line-one" aria-hidden="true" />
