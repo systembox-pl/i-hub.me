@@ -462,3 +462,92 @@
     transform: rotate(0);
   }
 }
+
+/* --- Przepływ "jak to działa" w rozwiniętym panelu --- */
+.accordion-panel-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease 0.15s;
+}
+
+.accordion-panel:hover .accordion-panel-flow,
+.accordion-panel.mobile-expanded .accordion-panel-flow {
+  opacity: 1;
+  height: auto;
+  margin-bottom: 18px;
+}
+
+.flow-step {
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+.accordion-panel:hover .flow-step,
+.accordion-panel.mobile-expanded .flow-step {
+  animation: flowPulse 2.1s ease-in-out infinite;
+}
+
+.flow-arrow {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+}
+
+@keyframes flowPulse {
+  0%, 100% {
+    background: rgba(255, 255, 255, 0.12);
+    box-shadow: none;
+  }
+  15%, 30% {
+    background: rgba(255, 255, 255, 0.35);
+    box-shadow: 0 0 18px rgba(255, 255, 255, 0.45);
+  }
+}
+
+/* Tło panelu bez zdjęcia – siatka "kodu sklepu" */
+.panel-bg-grid {
+  background-color: #064e3b;
+  background-image:
+    radial-gradient(circle at 70% 30%, rgba(52, 211, 153, 0.45), transparent 45%),
+    radial-gradient(circle at 20% 80%, rgba(16, 185, 129, 0.35), transparent 40%),
+    linear-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.07) 1px, transparent 1px);
+  background-size: auto, auto, 28px 28px, 28px 28px;
+}
+
+/* CTA jako link – bez podkreślenia */
+a.accordion-panel-cta {
+  text-decoration: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flow-step {
+    animation: none !important;
+  }
+}
+
+a.accordion-panel-cta {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.accordion-panel-tagline {
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .accordion-panel-tagline {
+    white-space: normal;
+  }
+}
