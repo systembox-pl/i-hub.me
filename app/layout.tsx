@@ -10,26 +10,32 @@ const inter = Inter({
   display: "swap",
 })
 
+const title = "iHub Group – KSC, automatyzacje z KSeF i marketing dla sklepów"
+const description =
+  "Wpis do Wykazu KSC, automatyzacje n8n/Make z integracją KSeF dla biur rachunkowych i sklepów oraz marketing e-commerce: Meta, TikTok, Allegro, Google. Stała cena przed startem."
+
 export const metadata: Metadata = {
-  title: "iHub Group - Generowanie leadów i automatyzacje AI",
-  description:
-    "Pozyskujemy klientów i automatyzujemy Twój biznes dzięki AI. Generowanie leadów w modelu CPA i inteligentne rozwiązania automatyzacji.",
-  keywords: "generowanie leadów, automatyzacja AI, CPA, iHub Group, sztuczna inteligencja, biznes",
+  metadataBase: new URL("https://www.i-hub.me"),
+  title,
+  description,
+  keywords:
+    "KSC, NIS2, wykaz KSC, KSeF, automatyzacje n8n, Make, biuro rachunkowe, e-commerce, Allegro, Meta Ads, TikTok Ads, Shoper, WooCommerce, PrestaShop",
   authors: [{ name: "iHub Group" }],
   creator: "iHub Group",
   publisher: "iHub Group",
   openGraph: {
-    title: "iHub Group - Generowanie leadów i automatyzacje AI",
-    description: "Pozyskujemy klientów i automatyzujemy Twój biznes dzięki AI",
+    title,
+    description,
     type: "website",
     locale: "pl_PL",
+    url: "https://www.i-hub.me",
+    siteName: "iHub Group",
   },
   twitter: {
     card: "summary_large_image",
-    title: "iHub Group - Generowanie leadów i automatyzacje AI",
-    description: "Pozyskujemy klientów i automatyzujemy Twój biznes dzięki AI",
+    title,
+    description,
   },
-    generator: 'v0.app'
 }
 
 export default function RootLayout({
@@ -38,7 +44,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="pl" className={inter.variable}>
       <body className="font-sans antialiased">
         <ClientLayout>{children}</ClientLayout>
       </body>
