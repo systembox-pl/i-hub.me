@@ -33,8 +33,8 @@ const offers = [
       "Sklep → faktura w KSeF → księgowość, bez ręcznej pracy",
       "Integracje: sklep, CRM, arkusze, mail, system księgowy",
     ],
-    price: "od 4 500 zł",
-    priceNote: "netto za automatyzację, z opieką po wdrożeniu",
+    price: "Wycena po rozmowie",
+    priceNote: "bezpłatna konsultacja, stała cena przed startem",
     cta: "Opisz swój proces",
     accent: "from-indigo-600 to-blue-700",
   },
@@ -50,8 +50,8 @@ const offers = [
       "Oferty i optymalizacja sprzedaży na Allegro",
       "Przyspieszenie strony, zmiany w Shoper, WooCommerce i PrestaShop",
     ],
-    price: "od 1 000 zł",
-    priceNote: "netto, przyjmujemy też małe zlecenia",
+    price: "Wycena po rozmowie",
+    priceNote: "bezpłatna konsultacja, przyjmujemy też małe zlecenia",
     cta: "Porozmawiajmy o sklepie",
     accent: "from-blue-600 to-cyan-700",
   },
@@ -145,7 +145,7 @@ export default function Home() {
         <section id="oferta" className="max-w-6xl mx-auto px-4 md:px-8 py-12 scroll-mt-20">
           <h2 className="text-2xl md:text-3xl font-bold text-center">W czym jesteśmy najmocniejsi</h2>
           <p className="mt-3 text-center text-slate-600 max-w-2xl mx-auto">
-            Dwa obszary, w których dowozimy najszybciej. Ceny orientacyjne — dokładną wycenę dostajesz po rozmowie.
+            Dwa obszary, w których dowozimy najszybciej. Każdy projekt jest inny, dlatego wycenę dostajesz po krótkiej, bezpłatnej rozmowie.
           </p>
 
           <div className="mt-10 grid gap-6 md:grid-cols-2 max-w-4xl mx-auto">
@@ -178,7 +178,7 @@ export default function Home() {
                   </ul>
                   <div className="mt-auto pt-6">
                     <div className="border-t border-slate-200 pt-5">
-                      <p className="text-2xl font-bold">{o.price}</p>
+                      <p className="text-xl font-bold">{o.price}</p>
                       <p className="text-xs text-slate-500">{o.priceNote}</p>
                     </div>
                     <a
