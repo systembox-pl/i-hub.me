@@ -3,6 +3,7 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import ClientLayout from "./client-layout"
+import Script from "next/script"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -11,16 +12,16 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "iHub Group - Generowanie leadów i automatyzacje AI",
+  title: "iHub Group | Generowanie leadów B2B i automatyzacje AI",
   description:
-    "Pozyskujemy klientów i automatyzujemy Twój biznes dzięki AI. Generowanie leadów w modelu CPA i inteligentne rozwiązania automatyzacji.",
+    "iHub Group pomaga firmom B2B zdobywać lepsze leady, automatyzować procesy i wdrażać praktyczne rozwiązania AI. Umów rozmowę o wzroście.",
   keywords: "generowanie leadów B2B, automatyzacja biznesu, systemy AI, iHub Group, sztuczna inteligencja, wzrost biznesu",
   authors: [{ name: "iHub Group" }],
   creator: "iHub Group",
   publisher: "iHub Group",
   openGraph: {
-    title: "iHub Group - Generowanie leadów i automatyzacje AI",
-    description: "Pozyskujemy klientów i automatyzujemy Twój biznes dzięki AI",
+    title: "iHub Group | Generowanie leadów B2B i automatyzacje AI",
+    description: "Pomagamy firmom B2B zdobywać lepsze leady i automatyzować procesy dzięki praktycznemu AI",
     type: "website",
     locale: "pl_PL",
   },
@@ -37,9 +38,19 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      { "@type": "Organization", "@id": "https://i-hub.me/#organization", name: "iHub Group", url: "https://i-hub.me/", email: "hello@i-hub.me", areaServed: "PL", knowsAbout: ["generowanie leadów B2B", "automatyzacja procesów", "sztuczna inteligencja"] },
+      { "@type": "WebSite", "@id": "https://i-hub.me/#website", url: "https://i-hub.me/", name: "iHub Group", publisher: { "@id": "https://i-hub.me/#organization" }, inLanguage: "pl-PL" },
+      { "@type": "Service", serviceType: "Generowanie leadów B2B i automatyzacje AI", provider: { "@id": "https://i-hub.me/#organization" }, areaServed: "PL", description: "Generowanie kwalifikowanych leadów B2B, automatyzacja procesów i praktyczne wdrożenia AI dla firm." }
+    ]
+  }
+
   return (
     <html lang="pl" className={inter.variable}>
       <body className="font-sans antialiased">
+        <Script id="organization-schema" type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
