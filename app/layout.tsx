@@ -12,14 +12,14 @@ const inter = Inter({
 
 const title = "iHub Group – leady, automatyzacje AI i chatboty"
 const description =
-  "Pozyskujemy klientów i automatyzujemy biznes dzięki AI: leady w modelu CPA, automatyzacje n8n/Make z KSeF i chatbot Vedro AI."
+  "Pozyskujemy klientów i automatyzujemy biznes dzięki AI: leady w modelu CPL, automatyzacje n8n/Make z KSeF i chatbot Vedro AI."
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.i-hub.me"),
   title,
   description,
   keywords:
-    "generowanie leadów, leady CPA, automatyzacje AI, automatyzacje n8n, Make, integracja KSeF, chatbot AI, Vedro AI, iHub Group",
+    "generowanie leadów, leady CPL, automatyzacje AI, automatyzacje n8n, Make, integracja KSeF, chatbot AI, Vedro AI, iHub Group",
   authors: [{ name: "iHub Group" }],
   creator: "iHub Group",
   publisher: "iHub Group",
