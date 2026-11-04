@@ -20,7 +20,6 @@ type Service = {
   cta: string
   url: string
   image: string
-  accent: string // RGB, np. "59, 130, 246"
 }
 
 // Treści na podstawie podstron: lead.i-hub.me, ai.i-hub.me, vedroai.com
@@ -35,7 +34,6 @@ const services: Service[] = [
     cta: "Zamów leady",
     url: "https://lead.i-hub.me/",
     image: "/images/lead-bg.jpg",
-    accent: "59, 130, 246",
   },
   {
     id: "automatyzacje",
@@ -47,7 +45,6 @@ const services: Service[] = [
     cta: "Policz oszczędność",
     url: "https://ai.i-hub.me/",
     image: "/images/ai-bg.jpg",
-    accent: "139, 92, 246",
   },
   {
     id: "vedro",
@@ -59,7 +56,6 @@ const services: Service[] = [
     cta: "Wypróbuj za darmo",
     url: "https://www.vedroai.com/",
     image: "/images/chat-bg.jpg",
-    accent: "16, 185, 129",
   },
 ]
 
@@ -115,12 +111,12 @@ export default function Home() {
                 style={
                   {
                     zIndex: services.length - index,
-                    "--accent": service.accent,
                     "--d": `${0.36 + index * 0.08}s`,
                   } as React.CSSProperties
                 }
                 onClick={() => handlePanelClick(service)}
                 onKeyDown={(e) => e.key === "Enter" && handlePanelClick(service)}
+                data-id={service.id}
                 role="link"
                 tabIndex={0}
                 aria-label={`${service.title} – ${service.tagline}`}

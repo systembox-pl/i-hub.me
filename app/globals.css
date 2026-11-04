@@ -233,12 +233,10 @@
 
 /* Gradient w nagłówku – powolny przepływ koloru */
 .text-gradient {
-  background: linear-gradient(90deg, #4f46e5, #7c3aed, #0ea5e9, #4f46e5);
-  background-size: 300% 100%;
+  background: linear-gradient(90deg, #5b21b6 0%, #3730a3 55%, #1e3a8a 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  animation: gradientShift 10s ease-in-out infinite;
 }
 
 /* =========================================================
@@ -259,7 +257,7 @@
 }
 
 .accordion-panel {
-  --accent: 99, 102, 241;
+  --accent: 109, 91, 255;
   flex: 1;
   position: relative;
   overflow: hidden;
@@ -294,14 +292,14 @@
   inset: 0;
   background-size: cover;
   background-position: center;
-  filter: grayscale(0.6) brightness(0.68) contrast(1.05);
+  filter: grayscale(1) brightness(0.6) contrast(1.1);
   transform: scale(1.02);
   transition: transform 1.2s var(--ease-out), filter 0.8s var(--ease-out);
 }
 
 .accordion-panel:hover .accordion-panel-bg,
 .accordion-panel:focus-visible .accordion-panel-bg {
-  filter: grayscale(0) brightness(0.78) contrast(1.05);
+  filter: grayscale(1) brightness(0.78) contrast(1.1);
   transform: scale(1.08);
 }
 
@@ -311,7 +309,7 @@
   inset: 0;
   z-index: 1;
   background:
-    radial-gradient(120% 80% at 50% 110%, rgba(var(--accent), 0.55), transparent 60%),
+    radial-gradient(120% 80% at 50% 115%, rgba(var(--accent), 0.35), transparent 60%),
     linear-gradient(180deg, rgba(11, 13, 20, 0.35) 0%, rgba(11, 13, 20, 0.55) 45%, rgba(11, 13, 20, 0.92) 100%);
   transition: opacity 0.7s var(--ease-out);
 }
@@ -578,7 +576,7 @@
   }
 
   .accordion-panel.mobile-expanded .accordion-panel-bg {
-    filter: grayscale(0) brightness(0.7);
+    filter: grayscale(1) brightness(0.75);
   }
 
   .accordion-panel.mobile-expanded::after {
@@ -605,4 +603,18 @@
   .details-item {
     transition: none;
   }
+}
+
+/* Wyrównanie jasności zdjęć – wszystkie panele w jednym tonie */
+.accordion-panel[data-id="leady"] .accordion-panel-bg {
+  filter: grayscale(1) brightness(0.85) contrast(1.1);
+}
+.accordion-panel[data-id="leady"]:hover .accordion-panel-bg {
+  filter: grayscale(1) brightness(1) contrast(1.1);
+}
+.accordion-panel[data-id="vedro"] .accordion-panel-bg {
+  filter: grayscale(1) brightness(0.4) contrast(1.1);
+}
+.accordion-panel[data-id="vedro"]:hover .accordion-panel-bg {
+  filter: grayscale(1) brightness(0.55) contrast(1.1);
 }

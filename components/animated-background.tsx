@@ -30,20 +30,15 @@ interface TrailPoint {
 }
 
 const PARTICLE_COLORS = [
-  "rgba(59, 130, 246, 0.5)",
-  "rgba(99, 102, 241, 0.4)",
-  "rgba(139, 92, 246, 0.35)",
-  "rgba(168, 85, 247, 0.3)",
+  "rgba(76, 29, 149, 0.28)",
+  "rgba(67, 56, 202, 0.25)",
+  "rgba(30, 58, 138, 0.25)",
 ]
 
 const GLOW_COLORS: GlowColor[] = [
-  { r: 236, g: 72, b: 153 },  // pink
-  { r: 168, g: 85, b: 247 },  // purple
-  { r: 139, g: 92, b: 246 },  // violet
-  { r: 59, g: 130, b: 246 },  // blue
-  { r: 249, g: 115, b: 22 },  // orange
-  { r: 239, g: 68, b: 68 },   // red
-  { r: 16, g: 185, b: 129 },  // emerald
+  { r: 91, g: 33, b: 182 },  // fiolet logo
+  { r: 67, g: 56, b: 202 },  // indygo
+  { r: 30, g: 58, b: 138 },  // granat logo
 ]
 
 export function AnimatedBackground() {
@@ -241,8 +236,8 @@ export function AnimatedBackground() {
       // Always draw cursor dot
       if (x > 0 && y > 0) {
         const dotGradient = ctx.createRadialGradient(x, y, 0, x, y, 10)
-        dotGradient.addColorStop(0, "rgba(220, 255, 120, 1)")
-        dotGradient.addColorStop(0.4, "rgba(200, 255, 100, 0.7)")
+        dotGradient.addColorStop(0, "rgba(237, 233, 254, 1)")
+        dotGradient.addColorStop(0.4, "rgba(196, 181, 253, 0.7)")
         dotGradient.addColorStop(1, "transparent")
 
         ctx.beginPath()
@@ -252,7 +247,7 @@ export function AnimatedBackground() {
 
         ctx.beginPath()
         ctx.arc(x, y, 3, 0, Math.PI * 2)
-        ctx.fillStyle = "rgba(255, 255, 200, 1)"
+        ctx.fillStyle = "rgba(255, 255, 255, 1)"
         ctx.fill()
       }
     }
