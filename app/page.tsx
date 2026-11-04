@@ -8,6 +8,8 @@ import { AnimatedBackground } from "@/components/animated-background"
 const CONTACT_EMAIL = "hello@i-hub.me"
 const CONTACT_PHONE = "+48 787 460 539"
 const CONTACT_PHONE_HREF = "tel:+48787460539"
+const CONTACT_PHONE_2 = "+48 570 923 234"
+const CONTACT_PHONE_2_HREF = "tel:+48570923234"
 
 type Service = {
   id: string
@@ -21,7 +23,7 @@ type Service = {
   accent: string // RGB, np. "59, 130, 246"
 }
 
-// Treści na podstawie podstron: lead.i-hub.me, ai.i-hub.me, webstudio.i-hub.me, vira.i-hub.me, vedroai.com
+// Treści na podstawie podstron: lead.i-hub.me, ai.i-hub.me, vedroai.com
 const services: Service[] = [
   {
     id: "leady",
@@ -46,30 +48,6 @@ const services: Service[] = [
     url: "https://ai.i-hub.me/",
     image: "/images/ai-bg.jpg",
     accent: "139, 92, 246",
-  },
-  {
-    id: "www",
-    title: "Strony WWW",
-    tagline: "Gotowe w 3 dni",
-    description:
-      "Szybki, responsywny landing page do 5 podstron – bez projektu graficznego, gotowy pod reklamy i analitykę.",
-    facts: ["3 dni robocze", "Stała cena", "Do 5 poprawek"],
-    cta: "Zamów stronę",
-    url: "https://webstudio.i-hub.me/",
-    image: "/images/web-bg.jpg",
-    accent: "163, 230, 53",
-  },
-  {
-    id: "vira",
-    title: "VIRA Voice",
-    tagline: "Asystent głosowy",
-    description:
-      "Voicebot, który dzwoni do klientów, umawia wizyty, przypomina o płatnościach i zapisuje wynik każdej rozmowy.",
-    facts: ["Działa 24/7", "Wdrożenie w 7 dni", "Transkrypcje"],
-    cta: "Posłuchaj demo",
-    url: "https://vira.i-hub.me/",
-    image: "/images/voice-bg.jpg",
-    accent: "34, 211, 238",
   },
   {
     id: "vedro",
@@ -124,7 +102,7 @@ export default function Home() {
               className="reveal max-w-xl mx-auto text-sm md:text-base text-slate-500 leading-relaxed"
               style={{ "--d": "0.24s" } as React.CSSProperties}
             >
-              Pięć wyspecjalizowanych rozwiązań, jeden zespół. Wybierz kierunek.
+              Trzy wyspecjalizowane rozwiązania, jeden zespół. Wybierz kierunek.
             </p>
           </div>
 
@@ -203,6 +181,13 @@ export default function Home() {
               className="inline-flex items-center gap-2 hover:text-slate-900 transition-colors"
             >
               <Phone className="h-4 w-4" /> {CONTACT_PHONE}
+            </a>
+            <span className="hidden sm:block h-4 w-px bg-slate-300" />
+            <a
+              href={CONTACT_PHONE_2_HREF}
+              className="inline-flex items-center gap-2 hover:text-slate-900 transition-colors"
+            >
+              <Phone className="h-4 w-4" /> {CONTACT_PHONE_2}
             </a>
           </div>
         </div>
