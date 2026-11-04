@@ -20,6 +20,7 @@ type Service = {
   cta: string
   url: string
   image: string
+  accent: string // RGB – odcień z gradientu logo (fiolet → indygo → granat)
 }
 
 // Treści na podstawie podstron: lead.i-hub.me, ai.i-hub.me, vedroai.com
@@ -34,6 +35,7 @@ const services: Service[] = [
     cta: "Zamów leady",
     url: "https://lead.i-hub.me/",
     image: "/images/lead-bg.jpg",
+    accent: "124, 58, 237",
   },
   {
     id: "automatyzacje",
@@ -45,6 +47,7 @@ const services: Service[] = [
     cta: "Policz oszczędność",
     url: "https://ai.i-hub.me/",
     image: "/images/ai-bg.jpg",
+    accent: "79, 70, 229",
   },
   {
     id: "vedro",
@@ -56,6 +59,7 @@ const services: Service[] = [
     cta: "Wypróbuj za darmo",
     url: "https://www.vedroai.com/",
     image: "/images/chat-bg.jpg",
+    accent: "37, 99, 235",
   },
 ]
 
@@ -111,6 +115,7 @@ export default function Home() {
                 style={
                   {
                     zIndex: services.length - index,
+                    "--accent": service.accent,
                     "--d": `${0.36 + index * 0.08}s`,
                   } as React.CSSProperties
                 }
@@ -122,6 +127,7 @@ export default function Home() {
                 aria-label={`${service.title} – ${service.tagline}`}
               >
                 <div className="accordion-panel-bg" style={{ backgroundImage: `url(${service.image})` }} />
+                <div className="accordion-panel-tint" />
                 <div className="accordion-panel-overlay" />
 
                 <div className="accordion-panel-content">
