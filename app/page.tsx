@@ -30,8 +30,8 @@ const services: Service[] = [
     title: "Generowanie leadów",
     tagline: "Płacisz za efekt",
     description:
-      "Ręcznie weryfikowane kontakty od klientów zainteresowanych Twoją ofertą. Płacisz tylko za zaakceptowane leady – bez abonamentu.",
-    facts: ["Model CPA", "Leady na wyłączność", "Start w 24 h"],
+      "Ręcznie weryfikowane kontakty od klientów zainteresowanych Twoją ofertą. Płacisz za leady spełniające uzgodniony standard – bez abonamentu.",
+    facts: ["Model CPL", "Leady na wyłączność", "Dostawa do 2 dni"],
     cta: "Zamów leady",
     url: "https://lead.i-hub.me/",
     image: "/images/lead-bg.jpg",
