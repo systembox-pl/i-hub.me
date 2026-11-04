@@ -19,10 +19,11 @@ export const metadata: Metadata = {
   title,
   description,
   keywords:
-    "generowanie leadów, leady CPA, automatyzacje AI, KSeF, chatbot AI, automatyzacje n8n, Make, biuro rachunkowe, e-commerce, Allegro, Meta Ads, TikTok Ads, Shoper, WooCommerce, PrestaShop",
+    "generowanie leadów, leady CPA, automatyzacje AI, automatyzacje n8n, Make, integracja KSeF, chatbot AI, Vedro AI, iHub Group",
   authors: [{ name: "iHub Group" }],
   creator: "iHub Group",
   publisher: "iHub Group",
+  alternates: { canonical: "/" },
   openGraph: {
     title,
     description,
@@ -38,6 +39,31 @@ export const metadata: Metadata = {
   },
 }
 
+// Dane strukturalne firmy (schema.org) – pomagają Google rozpoznać spółkę
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "iHub Group",
+  legalName: "IHUB GROUP sp. z o.o.",
+  url: "https://www.i-hub.me",
+  logo: "https://www.i-hub.me/images/logo-footer.png",
+  email: "hello@i-hub.me",
+  telephone: ["+48 787 460 539", "+48 570 923 234"],
+  taxID: "7011230049",
+  identifier: [
+    { "@type": "PropertyValue", propertyID: "KRS", value: "0001135453" },
+    { "@type": "PropertyValue", propertyID: "REGON", value: "540033180" },
+  ],
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "ul. Stefana Batorego 18/108",
+    postalCode: "02-591",
+    addressLocality: "Warszawa",
+    addressCountry: "PL",
+  },
+  sameAs: ["https://lead.i-hub.me/", "https://ai.i-hub.me/", "https://www.vedroai.com/"],
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -46,6 +72,10 @@ export default function RootLayout({
   return (
     <html lang="pl" className={inter.variable}>
       <body className="font-sans antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>
