@@ -200,6 +200,12 @@ export default function Home() {
         style={{ "--d": "0.95s" } as React.CSSProperties}
       >
         <p className="text-slate-400 text-xs tracking-wide">© {new Date().getFullYear()} iHub Group</p>
+        <address className="mt-2 px-4 not-italic text-[11px] leading-relaxed text-slate-400/80">
+          IHUB GROUP sp. z o.o. · ul. Stefana Batorego 18/108, 02-591 Warszawa
+          <span className="hidden sm:inline"> · </span>
+          <br className="sm:hidden" />
+          KRS 0001135453 · NIP 7011230049 · REGON 540033180
+        </address>
       </footer>
     </div>
   )
