@@ -204,26 +204,71 @@
   50% { opacity: 0.7; }
 }
 
-/* Skewed Accordion Container */
-.accordion-container {
-  display: flex;
-  height: 420px;
-  width: 100%;
-  max-width: 1100px;
-  overflow: hidden;
-  border-radius: 20px;
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+/* =========================================================
+   Wspólny system ruchu: jedno easing, jeden typ wejścia
+   ========================================================= */
+:root {
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --reveal-duration: 0.9s;
 }
 
-/* Skewed Accordion Panel - using clip-path for parallelogram shapes */
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+  animation: reveal var(--reveal-duration) var(--ease-out) forwards;
+  animation-delay: var(--d, 0s);
+}
+
+/* Gradient w nagłówku – powolny przepływ koloru */
+.text-gradient {
+  background: linear-gradient(90deg, #5b21b6 0%, #3730a3 55%, #1e3a8a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================================================
+   Skośny akordeon
+   ========================================================= */
+.accordion-container {
+  display: flex;
+  height: 440px;
+  width: 100%;
+  max-width: 1120px;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #0e0b1f;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.6) inset,
+    0 30px 70px -24px rgba(49, 46, 129, 0.45),
+    0 0 0 1px rgba(15, 23, 42, 0.06);
+}
+
 .accordion-panel {
+  --accent: 109, 91, 255;
   flex: 1;
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  transition: flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  clip-path: polygon(50px 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
   margin-left: -50px;
+  clip-path: polygon(50px 0%, 100% 0%, calc(100% - 50px) 100%, 0% 100%);
+  transition: flex 0.7s var(--ease-out);
+  /* wejście paneli – kolejno */
+  opacity: 0;
+  animation: reveal var(--reveal-duration) var(--ease-out) forwards;
+  animation-delay: var(--d, 0s);
 }
 
 .accordion-panel:first-child {
@@ -235,92 +280,122 @@
   clip-path: polygon(50px 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-.accordion-panel:hover {
+.accordion-panel:hover,
+.accordion-panel:focus-visible {
   flex: 4;
+  outline: none;
 }
 
-/* Panel Background Image */
+/* Zdjęcie: przygaszone i zdesaturowane, na hover odzyskuje kolor */
 .accordion-panel-bg {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: grayscale(1) brightness(0.6) contrast(1.1);
+  transform: scale(1.02);
+  transition: transform 1.2s var(--ease-out), filter 0.8s var(--ease-out);
 }
 
-.accordion-panel:hover .accordion-panel-bg {
-  transform: scale(1.1);
+.accordion-panel:hover .accordion-panel-bg,
+.accordion-panel:focus-visible .accordion-panel-bg {
+  filter: grayscale(1) brightness(0.78) contrast(1.1);
+  transform: scale(1.08);
 }
 
-/* Panel Overlay - gradient for readability */
+/* Nakładka: ciemna baza + akcent produktu */
 .accordion-panel-overlay {
   position: absolute;
   inset: 0;
-  transition: all 0.5s ease;
   z-index: 1;
+  background:
+    radial-gradient(110% 70% at 50% 110%, rgba(var(--accent), 0.55), transparent 65%),
+    radial-gradient(80% 60% at 50% -10%, rgba(var(--accent), 0.18), transparent 70%),
+    linear-gradient(180deg, rgba(14, 11, 31, 0.25) 0%, rgba(14, 11, 31, 0.5) 45%, rgba(14, 11, 31, 0.9) 100%);
+  transition: opacity 0.7s var(--ease-out);
 }
 
-/* Content wrapper */
-.accordion-panel-content {
+/* Cienka linia akcentu na dole panelu */
+.accordion-panel::after {
+  content: "";
   position: absolute;
-  bottom: 0;
   left: 0;
   right: 0;
-  padding: 28px 24px;
+  bottom: 0;
+  height: 3px;
+  z-index: 5;
+  background: rgb(var(--accent));
+  transform: scaleX(0.35);
+  opacity: 0.7;
+  transition: transform 0.7s var(--ease-out), opacity 0.7s var(--ease-out);
+}
+
+.accordion-panel:hover::after,
+.accordion-panel:focus-visible::after {
+  transform: scaleX(1);
+  opacity: 1;
+}
+
+.accordion-panel-content {
+  position: absolute;
+  inset: 0;
   z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
-  height: 100%;
+  padding: 32px 28px;
   text-align: center;
-  transition: all 0.4s ease;
 }
 
-/* Title - horizontal by default, vertical when container has hover (sibling is expanded) */
+.accordion-panel-index {
+  position: absolute;
+  top: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: rgba(255, 255, 255, 0.45);
+  font-variant-numeric: tabular-nums;
+  transition: color 0.5s var(--ease-out);
+}
+
+.accordion-panel:hover .accordion-panel-index {
+  color: rgb(var(--accent));
+}
+
 .accordion-panel-title {
-  font-size: 1.25rem;
-  font-weight: 700;
+  font-size: 1.15rem;
+  font-weight: 650;
+  letter-spacing: -0.01em;
   color: white;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   white-space: nowrap;
-  transition: all 0.4s ease;
   writing-mode: horizontal-tb;
   transform: rotate(0);
+  transition: font-size 0.6s var(--ease-out), margin 0.6s var(--ease-out);
 }
 
-/* When container is hovered, collapsed panels get vertical text */
-.accordion-container:hover .accordion-panel:not(:hover) .accordion-panel-title {
+.accordion-panel-tagline {
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  writing-mode: horizontal-tb;
+  transform: rotate(0);
+  transition: opacity 0.4s var(--ease-out);
+}
+
+/* Zwinięte panele (gdy inny jest rozwinięty) – tekst pionowo */
+.accordion-container:hover .accordion-panel:not(:hover) .accordion-panel-title,
+.accordion-container:hover .accordion-panel:not(:hover) .accordion-panel-tagline {
   writing-mode: vertical-rl;
-  text-orientation: mixed;
   transform: rotate(180deg);
 }
 
 .accordion-panel:hover .accordion-panel-title {
-  writing-mode: horizontal-tb;
-  transform: rotate(0);
-  font-size: 1.75rem;
-  margin-bottom: 12px;
-}
-
-/* Tagline - horizontal by default, vertical when sibling is expanded */
-.accordion-panel-tagline {
-  font-size: 0.8rem;
-  color: rgba(255,255,255,0.9);
-  text-shadow: 0 1px 6px rgba(0,0,0,0.4);
-  line-height: 1.4;
-  transition: all 0.4s ease;
-  opacity: 1;
-  margin-top: 8px;
-  writing-mode: horizontal-tb;
-  transform: rotate(0);
-}
-
-/* When container is hovered, collapsed panels get vertical tagline */
-.accordion-container:hover .accordion-panel:not(:hover) .accordion-panel-tagline {
-  writing-mode: vertical-rl;
-  text-orientation: mixed;
-  transform: rotate(180deg);
+  font-size: 1.9rem;
+  margin-bottom: 10px;
 }
 
 .accordion-panel:hover .accordion-panel-tagline {
@@ -329,136 +404,253 @@
   margin: 0;
 }
 
-/* Full description - only on hover */
-.accordion-panel-description {
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.95);
-  line-height: 1.6;
-  max-width: 320px;
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-  transition: all 0.4s ease 0.1s;
+/* Szczegóły – pojawiają się kaskadowo tym samym ruchem */
+.accordion-panel-details {
+  display: grid;
+  grid-template-rows: 0fr;
+  width: 100%;
+  max-width: 420px;
+  transition: grid-template-rows 0.6s var(--ease-out);
 }
 
-.accordion-panel:hover .accordion-panel-description {
+.accordion-panel-details > div {
+  overflow: hidden;
+}
+
+.accordion-panel:hover .accordion-panel-details,
+.accordion-panel:focus-visible .accordion-panel-details,
+.accordion-panel.mobile-expanded .accordion-panel-details {
+  grid-template-rows: 1fr;
+}
+
+.details-item {
+  opacity: 0;
+  transform: translateY(12px);
+  filter: blur(6px);
+  transition:
+    opacity 0.6s var(--ease-out),
+    transform 0.6s var(--ease-out),
+    filter 0.6s var(--ease-out);
+}
+
+.accordion-panel:hover .details-item,
+.accordion-panel:focus-visible .details-item,
+.accordion-panel.mobile-expanded .details-item {
   opacity: 1;
-  height: auto;
+  transform: translateY(0);
+  filter: blur(0);
+  transition-delay: calc(0.15s + var(--i, 0) * 0.08s);
+}
+
+.accordion-panel-description {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: 16px;
 }
 
-/* CTA Button */
-.accordion-panel-cta {
-  padding: 12px 28px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 10px;
-  color: white;
-  font-weight: 600;
-  font-size: 0.9rem;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: all 0.4s ease 0.2s;
-  display: inline-block;
+.accordion-panel-facts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 20px;
 }
 
-.accordion-panel:hover .accordion-panel-cta {
-  opacity: 1;
-  transform: translateY(0);
+.fact {
+  padding: 4px 11px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 550;
+  color: white;
+  white-space: nowrap;
+  background: rgba(var(--accent), 0.16);
+  border: 1px solid rgba(var(--accent), 0.45);
+}
+
+.accordion-panel-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 999px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #0b0d14;
+  background: white;
+  text-decoration: none;
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out);
 }
 
 .accordion-panel-cta:hover {
-  background: rgba(255,255,255,0.25);
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px -6px rgba(var(--accent), 0.8);
 }
 
-/* Mobile styles */
+.accordion-panel-cta svg {
+  transition: transform 0.4s var(--ease-out);
+}
+
+.accordion-panel-cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* =========================================================
+   Telefon
+   ========================================================= */
 @media (max-width: 768px) {
   .accordion-container {
     flex-direction: column;
     height: auto;
-    border-radius: 16px;
+    border-radius: 20px;
   }
-  
-  .accordion-panel {
-    clip-path: none;
-    margin-left: 0;
-    min-height: 80px;
-    transition: min-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), flex 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  .accordion-panel:first-child {
-    clip-path: none;
-  }
-  
+
+  .accordion-panel,
+  .accordion-panel:first-child,
   .accordion-panel:last-child {
     clip-path: none;
+    margin-left: 0;
+    min-height: 88px;
+    flex: none;
   }
-  
-  /* Disable hover effects on mobile - use click instead */
+
   .accordion-panel:hover {
     flex: none;
-    min-height: 80px;
   }
-  
-  /* Mobile expanded state via JavaScript class */
-  .accordion-panel.mobile-expanded {
-    min-height: 240px;
+
+  .accordion-panel + .accordion-panel {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
   }
-  
+
   .accordion-panel-content {
     position: relative;
-    bottom: auto;
-    padding: 16px 12px;
+    inset: auto;
+    padding: 22px 20px;
     justify-content: center;
   }
-  
-  .accordion-panel-title {
-    font-size: 1rem;
+
+  .accordion-panel-index {
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
   }
-  
-  /* Expanded title on mobile */
+
+  .accordion-panel.mobile-expanded .accordion-panel-index {
+    top: 22px;
+    transform: none;
+  }
+
+  .accordion-panel-tagline {
+    white-space: normal;
+  }
+
+  /* na telefonie bez hover – sterujemy klasą */
+  .accordion-panel:hover .accordion-panel-title {
+    font-size: 1.15rem;
+    margin-bottom: 0;
+  }
+
+  .accordion-panel:hover .accordion-panel-tagline {
+    opacity: 1;
+    height: auto;
+    margin-top: 6px;
+  }
+
+  .accordion-panel:not(.mobile-expanded):hover .accordion-panel-details {
+    grid-template-rows: 0fr;
+  }
+
+  .accordion-panel:not(.mobile-expanded):hover .details-item {
+    opacity: 0;
+  }
+
   .accordion-panel.mobile-expanded .accordion-panel-title {
-    font-size: 1.25rem;
+    font-size: 1.4rem;
     margin-bottom: 8px;
   }
-  
-  .accordion-panel-tagline {
-    margin-top: 4px;
-    font-size: 0.7rem;
-  }
-  
-  /* Hide tagline when expanded */
+
   .accordion-panel.mobile-expanded .accordion-panel-tagline {
     opacity: 0;
     height: 0;
     margin: 0;
   }
-  
-  /* Show description when expanded */
-  .accordion-panel.mobile-expanded .accordion-panel-description {
-    opacity: 1;
-    height: auto;
-    margin-bottom: 12px;
+
+  .accordion-panel.mobile-expanded .accordion-panel-bg {
+    filter: grayscale(1) brightness(0.75);
   }
-  
-  /* Show CTA when expanded */
-  .accordion-panel.mobile-expanded .accordion-panel-cta {
+
+  .accordion-panel.mobile-expanded::after {
+    transform: scaleX(1);
     opacity: 1;
-    transform: translateY(0);
   }
-  
-  /* Override hover-based vertical text on mobile - keep text horizontal */
+
   .accordion-container:hover .accordion-panel:not(:hover) .accordion-panel-title,
   .accordion-container:hover .accordion-panel:not(:hover) .accordion-panel-tagline {
     writing-mode: horizontal-tb;
-    transform: rotate(0);
+    transform: none;
   }
-  
-  /* Keep text horizontal in collapsed panels on mobile */
-  .accordion-container:has(.mobile-expanded) .accordion-panel:not(.mobile-expanded) .accordion-panel-title,
-  .accordion-container:has(.mobile-expanded) .accordion-panel:not(.mobile-expanded) .accordion-panel-tagline {
-    writing-mode: horizontal-tb;
-    transform: rotate(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .accordion-panel {
+    animation: none;
+    opacity: 1;
   }
+  .text-gradient {
+    animation: none;
+  }
+  .details-item {
+    transition: none;
+  }
+}
+
+/* Wyrównanie jasności zdjęć – wszystkie panele w jednym tonie */
+.accordion-panel[data-id="leady"] .accordion-panel-bg {
+  filter: grayscale(1) brightness(0.85) contrast(1.1);
+}
+.accordion-panel[data-id="leady"]:hover .accordion-panel-bg {
+  filter: grayscale(1) brightness(1) contrast(1.1);
+}
+.accordion-panel[data-id="vedro"] .accordion-panel-bg {
+  filter: grayscale(1) brightness(0.4) contrast(1.1);
+}
+.accordion-panel[data-id="vedro"]:hover .accordion-panel-bg {
+  filter: grayscale(1) brightness(0.55) contrast(1.1);
+}
+
+/* Duotone: monochromatyczne zdjęcie podbarwione odcieniem panelu */
+.accordion-panel-tint {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: rgb(var(--accent));
+  mix-blend-mode: color;
+  opacity: 0.55;
+  transition: opacity 0.8s var(--ease-out);
+}
+
+.accordion-panel:hover .accordion-panel-tint,
+.accordion-panel:focus-visible .accordion-panel-tint,
+.accordion-panel.mobile-expanded .accordion-panel-tint {
+  opacity: 0.75;
+}
+
+.accordion-panel-overlay {
+  z-index: 2;
+}
+
+/* Chipy i numer w odcieniu panelu, jaśniejsze dla czytelności */
+.fact {
+  background: rgba(var(--accent), 0.22);
+  border-color: rgba(var(--accent), 0.55);
+}
+
+.accordion-panel:hover .accordion-panel-index {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.accordion-panel::after {
+  background: linear-gradient(90deg, rgba(var(--accent), 0.4), rgb(var(--accent)), rgba(var(--accent), 0.4));
 }
